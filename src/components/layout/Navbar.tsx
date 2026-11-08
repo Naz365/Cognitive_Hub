@@ -42,6 +42,13 @@ export default function Navbar() {
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-5">
           <Link
+            href="/lab"
+            className="flex items-center gap-1.5 text-xs font-mono font-medium text-slate-300 hover:text-cyan-400 transition"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Coding Lab & Simulators</span>
+          </Link>
+          <Link
             href="/portal"
             className="flex items-center gap-1.5 text-xs font-mono font-medium text-slate-300 hover:text-cyan-400 transition"
           >
@@ -120,9 +127,17 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="lg:hidden border-b border-slate-800 bg-slate-950 px-4 pt-2 pb-6 space-y-2 font-mono text-xs">
           <Link
-            href="/portal"
+            href="/lab"
             onClick={() => setMobileMenuOpen(false)}
             className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-cyan-300 bg-cyan-950/40 border border-cyan-800/60"
+          >
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <span>Coding Lab & Simulators</span>
+          </Link>
+          <Link
+            href="/portal"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-200 hover:bg-slate-900"
           >
             <UserCheck className="w-4 h-4" />
             <span>Student Portal & Mastery Tracker</span>

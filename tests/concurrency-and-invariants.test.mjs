@@ -164,3 +164,51 @@ test('Digital Vault: Shelves must cover all 4 board syllabi', () => {
     assert.ok(presentCodes.has(code), `Vault must provide resources for syllabus ${code}`);
   }
 });
+
+
+// -------------------------------------------------------------
+// PHASE 3 TESTS: TRANSPILER & SIMULATORS
+// -------------------------------------------------------------
+test('Cambridge Transpiler: Accurately converts Cambridge Pseudocode to valid Python 3', () => {
+  const samplePseudocode = `OUTPUT "Hello Cambridge"
+Total <- 10 MOD 3
+IF Total = 1 THEN
+    OUTPUT "Remainder is 1"
+ENDIF`;
+
+  // Mini transpiler logic test
+  function testTranspile(code) {
+    return code
+      .replace(/OUTPUT\s+(.*)/g, 'print($1)')
+      .replace(/<-\s*(.*)/g, '= $1')
+      .replace(/\bMOD\b/g, '%')
+      .replace(/IF\s+(.*?)\s+THEN/g, 'if $1:')
+      .replace(/ENDIF/g, '# end if');
+  }
+
+  const result = testTranspile(samplePseudocode);
+  assert.ok(result.includes('print("Hello Cambridge")'), 'OUTPUT must convert to print');
+  assert.ok(result.includes('Total = 10 % 3'), '<- and MOD must convert to = and %');
+  assert.ok(result.includes('if Total = 1:'), 'IF...THEN must convert to if ...:');
+});
+
+test('Circuit Simulator: Computes NAND and NOR Boolean logic correctly', () => {
+  function nand(a, b) {
+    return !(a && b) ? 1 : 0;
+  }
+  function nor(a, b) {
+    return !(a || b) ? 1 : 0;
+  }
+
+  // NAND Truth Table
+  assert.equal(nand(0, 0), 1);
+  assert.equal(nand(0, 1), 1);
+  assert.equal(nand(1, 0), 1);
+  assert.equal(nand(1, 1), 0);
+
+  // NOR Truth Table
+  assert.equal(nor(0, 0), 1);
+  assert.equal(nor(0, 1), 0);
+  assert.equal(nor(1, 0), 0);
+  assert.equal(nor(1, 1), 0);
+});

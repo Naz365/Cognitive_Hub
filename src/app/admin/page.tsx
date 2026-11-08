@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import { Batch, AdmissionRecord, WaitlistEntry, StudioStats } from '@/types';
 import { COURSES, STUDIO_CONFIG } from '@/lib/constants';
@@ -130,18 +131,28 @@ export default function AdminCommandCenter() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <Link
+              href="/admin/monitor"
+              className="px-3.5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-mono font-bold flex items-center gap-1.5 transition shadow-md shadow-cyan-950/40"
+            >
+              <Monitor className="w-3.5 h-3.5" />
+              <span>Live 3-Desk Code Monitor</span>
+            </Link>
+            <Link
+              href="/admin/digests"
+              className="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-xs font-mono text-emerald-400 flex items-center gap-1.5 transition"
+            >
+              <Send className="w-3.5 h-3.5" />
+              <span>Parent WhatsApp Digests</span>
+            </Link>
             <button
               onClick={fetchAdminOverview}
               className="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-xs font-mono text-slate-300 flex items-center gap-2 transition"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
-              <span>Refresh Studio State</span>
+              <span>Refresh</span>
             </button>
-            <div className="px-3 py-1.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-mono flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Realtime Lock Active</span>
-            </div>
           </div>
         </div>
 
