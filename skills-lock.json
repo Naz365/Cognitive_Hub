@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "better-design": {
+      "source": "marvkr/better-design",
+      "sourceType": "github",
+      "skillPath": "skills/better-design/SKILL.md",
+      "computedHash": "1cec6f1593b905a5238c7459f28c3a790861a672f8eeb18e00beb22fce8d53f7"
+    }
+  }
+}
