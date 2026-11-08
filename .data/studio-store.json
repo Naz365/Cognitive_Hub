@@ -1,0 +1,189 @@
+{
+  "batches": [
+    {
+      "id": "batch-0478-weekend-am",
+      "name": "Batch A1: Weekend Prime",
+      "courseCode": "0478",
+      "daysSchedule": "Friday & Saturday",
+      "timeSlot": "10:00 AM – 12:00 PM",
+      "capacity": 3,
+      "waitlistCount": 0,
+      "desks": [
+        {
+          "id": "desk-0478-a1-1",
+          "number": 1,
+          "label": "Desk 01",
+          "status": "available"
+        },
+        {
+          "id": "desk-0478-a1-2",
+          "number": 2,
+          "label": "Desk 02",
+          "status": "available"
+        },
+        {
+          "id": "desk-0478-a1-3",
+          "number": 3,
+          "label": "Desk 03",
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "batch-0478-weekday-pm",
+      "name": "Batch A2: Mon/Wed Evening",
+      "courseCode": "0478",
+      "daysSchedule": "Monday & Wednesday",
+      "timeSlot": "5:00 PM – 7:00 PM",
+      "capacity": 3,
+      "waitlistCount": 0,
+      "desks": [
+        {
+          "id": "desk-0478-a2-1",
+          "number": 1,
+          "label": "Desk 01",
+          "status": "enrolled",
+          "studentName": "Fahim Rahman"
+        },
+        {
+          "id": "desk-0478-a2-2",
+          "number": 2,
+          "label": "Desk 02",
+          "status": "available"
+        },
+        {
+          "id": "desk-0478-a2-3",
+          "number": 3,
+          "label": "Desk 03",
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "batch-9618-weekend-pm",
+      "name": "Batch B1: Weekend A-Level Focus",
+      "courseCode": "9618",
+      "daysSchedule": "Friday & Saturday",
+      "timeSlot": "3:00 PM – 5:00 PM",
+      "capacity": 3,
+      "waitlistCount": 0,
+      "desks": [
+        {
+          "id": "desk-9618-b1-1",
+          "number": 1,
+          "label": "Desk 01",
+          "status": "enrolled",
+          "studentName": "Tazrian Ahmed"
+        },
+        {
+          "id": "desk-9618-b1-2",
+          "number": 2,
+          "label": "Desk 02",
+          "status": "enrolled",
+          "studentName": "Nabil Haque"
+        },
+        {
+          "id": "desk-9618-b1-3",
+          "number": 3,
+          "label": "Desk 03",
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "batch-9618-weekday-pm",
+      "name": "Batch B2: Sun/Tue A-Level Lab",
+      "courseCode": "9618",
+      "daysSchedule": "Sunday & Tuesday",
+      "timeSlot": "6:30 PM – 8:30 PM",
+      "capacity": 3,
+      "waitlistCount": 1,
+      "desks": [
+        {
+          "id": "desk-9618-b2-1",
+          "number": 1,
+          "label": "Desk 01",
+          "status": "enrolled",
+          "studentName": "Samiya Khan"
+        },
+        {
+          "id": "desk-9618-b2-2",
+          "number": 2,
+          "label": "Desk 02",
+          "status": "enrolled",
+          "studentName": "Rayan Chowdhury"
+        },
+        {
+          "id": "desk-9618-b2-3",
+          "number": 3,
+          "label": "Desk 03",
+          "status": "hold",
+          "studentName": "Ayman Sharif",
+          "holdExpiresAt": "2026-11-09T12:10:57.832Z"
+        }
+      ]
+    },
+    {
+      "id": "batch-4CP0-weekend-eve",
+      "name": "Batch C1: Edexcel CS Practical",
+      "courseCode": "4CP0",
+      "daysSchedule": "Friday & Saturday",
+      "timeSlot": "5:30 PM – 7:30 PM",
+      "capacity": 3,
+      "waitlistCount": 0,
+      "desks": [
+        {
+          "id": "desk-4cp0-c1-1",
+          "number": 1,
+          "label": "Desk 01",
+          "status": "available"
+        },
+        {
+          "id": "desk-4cp0-c1-2",
+          "number": 2,
+          "label": "Desk 02",
+          "status": "available"
+        },
+        {
+          "id": "desk-4cp0-c1-3",
+          "number": 3,
+          "label": "Desk 03",
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "batch-4IT1-weekday-eve",
+      "name": "Batch D1: Edexcel ICT Studio",
+      "courseCode": "4IT1",
+      "daysSchedule": "Tuesday & Thursday",
+      "timeSlot": "4:30 PM – 6:30 PM",
+      "capacity": 3,
+      "waitlistCount": 0,
+      "desks": [
+        {
+          "id": "desk-4it1-d1-1",
+          "number": 1,
+          "label": "Desk 01",
+          "status": "enrolled",
+          "studentName": "Zubair Hossain"
+        },
+        {
+          "id": "desk-4it1-d1-2",
+          "number": 2,
+          "label": "Desk 02",
+          "status": "available"
+        },
+        {
+          "id": "desk-4it1-d1-3",
+          "number": 3,
+          "label": "Desk 03",
+          "status": "available"
+        }
+      ]
+    }
+  ],
+  "admissions": [],
+  "waitlist": [],
+  "admissionSequence": 105
+}

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <!-- Cyan to Violet Electric Gradients -->
+    <linearGradient id="glowGradA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22D3EE" />
+      <stop offset="50%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#6366F1" />
+    </linearGradient>
+    <linearGradient id="glowGradB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="50%" stop-color="#4F46E5" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+
+    <!-- Multi-stage Neon Glow Filter (Light Emission from Behind) -->
+    <filter id="backlightGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <!-- Wide diffuse ambient aura -->
+      <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blurDeep" />
+      <!-- Mid bloom -->
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blurMid" />
+      <!-- Intense core aura -->
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blurCore" />
+      <feMerge>
+        <feMergeNode in="blurDeep" />
+        <feMergeNode in="blurDeep" />
+        <feMergeNode in="blurMid" />
+        <feMergeNode in="blurCore" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Radial Backlight Aura Behind the Icon -->
+    <radialGradient id="ambientBacklight" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.45" />
+      <stop offset="45%" stop-color="#6366F1" stop-opacity="0.30" />
+      <stop offset="80%" stop-color="#8B5CF6" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#090D16" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Ambient Light Emission Aura -->
+  <circle cx="100" cy="100" r="88" fill="url(#ambientBacklight)" pointer-events="none" />
+
+  <!-- Dual-Trace Circuit Logomark with Backlight Glow -->
+  <g transform="translate(11, 11)" filter="url(#backlightGlow)">
+    <!-- Trace A (Left Up & Diagonal Curve) -->
+    <path d="M 38 132 V 56 C 38 40, 54 38, 66 50 L 94 78 C 102 86, 108 82, 108 72 V 64" fill="none" stroke="url(#glowGradA)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="38" cy="132" r="12" fill="#06B6D4" />
+    <circle cx="38" cy="132" r="5" fill="#FFFFFF" />
+    <circle cx="108" cy="60" r="9.5" fill="#6366F1" />
+    <circle cx="108" cy="60" r="4" fill="#FFFFFF" />
+
+    <!-- Trace B (Inner Curve & Right Up) -->
+    <path d="M 64 108 V 94 C 64 84, 72 80, 80 88 L 114 122 C 126 134, 140 130, 140 114 V 46" fill="none" stroke="url(#glowGradB)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="64" cy="112" r="9.5" fill="#06B6D4" />
+    <circle cx="64" cy="112" r="4" fill="#FFFFFF" />
+    <circle cx="140" cy="44" r="12" fill="#8B5CF6" />
+    <circle cx="140" cy="44" r="5" fill="#FFFFFF" />
+  </g>
+</svg>

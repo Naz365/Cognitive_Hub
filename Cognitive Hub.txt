@@ -1,0 +1,108 @@
+You are the senior product engineering team responsible for building the Cognitive Hub Micro-Studio platform. Use the attached “Cognitive Hub Website Master Plan” as the source of truth. Build a production-ready, mobile-first web application — not a generic coaching-center template.
+
+PROJECT CONTEXT
+Cognitive Hub is an exclusive 3-desk micro-studio for:
+- Cambridge IGCSE Computer Science (0478)
+- Cambridge International AS & A Level Computer Science (9618)
+- Pearson Edexcel International GCSE Computer Science (4CP0)
+- Pearson Edexcel International GCSE ICT (4IT1)
+
+The website must function as:
+1. A live seat-reservation engine with a hard cap of 3 workstations per batch.
+2. An in-browser coding and practical lab.
+3. An automated assessment and mark-scheme platform.
+4. A parent/student portal and teacher command center.
+
+NON-NEGOTIABLE BUSINESS RULES
+- Every batch has exactly 3 desks: Desk 01, Desk 02, Desk 03. Never allow overbooking.
+- Seat states: Available, 24-Hour Hold, Enrolled. Holds must expire automatically.
+- If all 3 desks are full, offer a 1-click Priority Waitlist and alternative slots.
+- Admission flow must generate an Admission ID like CH-2026-XXX, lock the selected desk for 24 hours pending payment confirmation, and trigger a WhatsApp notification to the studio number +8801963341868.
+- The QR poster landing route must be mobile-first and let a parent/student check availability and reserve a seat in under 60 seconds.
+- Support Cambridge and Edexcel board-specific syllabus content, past papers, mark schemes, and practical source files.
+- Payment must support Bangladesh-friendly methods: automated SSLCommerz/MFS gateway and manual bKash/Nagad TrxID submission with teacher approval.
+- Resources must be protected: watermarked in-browser reader, signed download URLs, and role-based access.
+
+RECOMMENDED TECH STACK — use unless you document a strong reason to change
+- Frontend: Next.js App Router, React, TypeScript, Tailwind CSS, React Hook Form + Zod.
+- Backend/DB: Supabase Auth, PostgreSQL, Realtime, Row Level Security, Storage.
+- Analytics/UI: Recharts, interactive SVG seat map.
+- Live classroom: WebSockets or Liveblocks for 3-desk code/screen sync.
+- Coding lab: Monaco Editor, Pyodide WebAssembly for Python, custom pseudocode-to-Python transpiler, trace-table validator, logic-gate simulator.
+- Payments: SSLCommerz V4 API, bKash/Nagad merchant webhooks, manual TrxID verification flow.
+- Documents: automated PDF receipt generator with verification QR, PDF.js watermarked reader, PDF annotation for teacher feedback.
+- Messaging: WhatsApp Cloud API for admission alerts, payment reminders, and parent progress digests.
+- Testing: unit, integration, and Playwright end-to-end tests; concurrency/load testing for seat booking.
+
+CORE MODULES TO BUILD
+1. Public Acquisition & Seat Booking
+   - High-converting landing page with premium 3-desk micro-studio branding.
+   - QR fast-track route for poster/flyer scans.
+   - 4-step admission wizard: board/syllabus/target series; interactive SVG 3-desk batch selector with real-time status; 3-minute diagnostic baseline; admission ID + 24-hour hold + WhatsApp webhook.
+2. Student Dashboard
+   - Batch/desk status card, next-session countdown, attendance %, make-up slot request.
+   - Syllabus mastery tracker by official units and exam board, with mastery tags.
+   - Practical lab upload dropzone for .py, .html/.css, .xlsx, .accdb files; teacher annotations; version history.
+   - Grade trajectory and weak-area radar with recommended past-paper questions.
+3. Teacher/Admin Command Center
+   - 3-desk batch grid, attendance marking, seat-swap management, waitlist control.
+   - Live 3-desk code monitor: view all desks side by side, broadcast starter code, freeze/highlight a student’s code for debugging.
+   - 1-click mark-scheme rubric grader with voice notes/annotated PDF feedback.
+   - Revenue, dues, pending holds, enrollment pipeline, and WhatsApp payment reminders.
+4. Payment Portal & Receipts
+   - Dual-mode checkout: automated gateway/MFS and manual TrxID submission.
+   - Teacher 1-tap approve/verify for manual payments.
+   - Idempotent webhook handling; ledger updates; branded PDF receipt with verification QR sent via WhatsApp/email.
+5. Digital Book Corner & Practical Source-File Vault
+   - Four board-specific shelves: 0478, 9618, 4CP0, 4IT1.
+   - Endorsed e-books, lecture slides, pseudocode handbooks, formula sheets.
+   - Past-paper companion ZIP bundles with .csv, .html, .css, images, Python starters.
+   - Watermarked in-browser reader stamped with student name and ID.
+6. Quiz & Past Paper Engine
+   - Three modes: rapid topic drill, structured timed theory/pseudocode paper, full timed past-paper mock.
+   - Board mark-scheme keyword scanner: highlight matched keywords in green and missed mark-scheme points in amber; support partial credit.
+   - Mistake Logbook that auto-compiles missed questions, failed trace tables, and missed keywords into a printable revision sheet.
+7. High-Impact Add-ons
+   - In-browser Python + Cambridge pseudocode dual IDE.
+   - Interactive trace table and logic gate/truth-table simulator.
+   - ICT practical evidence document builder for Access relationships, SQL queries, Excel formulas, and screenshots exported as board-formatted PDF.
+
+DATA MODEL — implement at minimum
+- users/profiles: role, board, syllabus code, target exam session, guardian WhatsApp.
+- batches/workstation_desks: schedule, capacity constrained to 3, desk status, waitlist.
+- syllabus_topics/student_mastery: unit, learning objective, confidence score, linked past-paper questions.
+- lab_submissions: student, type, file URL, rubric score, inline feedback.
+- quizzes/questions/mark_scheme_keywords: question stem, year/variant, required keywords, partial-credit rules, attempts.
+- payments/invoices: billing month, amount BDT, method, verification status, receipt URL.
+
+DELIVERY PHASES
+Phase 1 — Weeks 1–2: Conversion & Core Admin MVP
+- Landing page, QR fast-track, 3-desk admission wizard, basic teacher batch manager, manual bKash/Nagad receipt generator.
+- Must be deployable and ready to capture poster/flyer admissions immediately.
+
+Phase 2 — Weeks 3–4: Student Portal, Book Corner & Quiz Engine
+- Student dashboard, syllabus mastery tracker, book corner/source-file vault, timed quiz engine with keyword highlighting, SSLCommerz integration.
+
+Phase 3 — Weeks 5–6: In-Browser Lab IDE & Parent Automation
+- Monaco + Pyodide Python/pseudocode IDE, trace table/logic gate lab, live 3-desk code monitor, automated parent WhatsApp digest.
+
+ACCEPTANCE CRITERIA
+- Concurrency-safe seat booking: no batch can ever exceed 3 enrolled desks; expired holds release seats automatically.
+- QR route completes availability check, level check, and 24-hour reservation on mobile in under 60 seconds.
+- Admission slip downloads correctly and WhatsApp alert is sent to the configured studio number.
+- Payment webhooks are idempotent; manual TrxID approval updates the ledger; receipt QR verifies successfully.
+- Teacher can see all 3 desks’ code side by side and broadcast starter code.
+- Keyword scanner returns matched/missed mark-scheme phrases and explains missed marks.
+- Watermarked PDF viewer displays student name/ID and blocks direct file access.
+- Role-based access control prevents students/parents from accessing teacher/admin routes.
+- All sensitive files use signed URLs; secrets are environment variables; audit logs exist for payments, seat changes, and grades.
+- Responsive on mobile, tablet, and desktop; accessible forms and clear error states.
+- Unit/integration/E2E tests cover admission, seat locking, payment verification, quiz scoring, and RBAC.
+
+WORKING AGREEMENT
+- Start by returning: assumptions, architecture diagram/ERD, API plan, sprint backlog, and Phase 1 implementation plan.
+- Build in deployable increments. Do not skip Phase 1 acceptance before Phase 2.
+- Use clean, typed code; migrations; seed data; environment examples; and CI checks.
+- Ask clarifying questions only where the master plan is ambiguous; otherwise choose the simplest secure implementation.
+- Do not hardcode payment keys, WhatsApp tokens, phone numbers, or admin credentials.
+- Provide a short demo script and QA checklist at the end of each phase.
