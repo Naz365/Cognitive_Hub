@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, QrCode, Shield, ArrowRight, Sparkles } from 'lucide-react';
+import { Menu, X, QrCode, Shield, ArrowRight, Sparkles, BookOpen, Brain, UserCheck } from 'lucide-react';
 import { STUDIO_CONFIG } from '@/lib/constants';
 
 export default function Navbar() {
@@ -40,31 +40,40 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-5">
           <Link
-            href="/#courses"
-            className="text-sm font-medium text-slate-300 hover:text-cyan-400 transition"
+            href="/portal"
+            className="flex items-center gap-1.5 text-xs font-mono font-medium text-slate-300 hover:text-cyan-400 transition"
           >
-            Syllabus Tracks
+            <UserCheck className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Student Portal</span>
           </Link>
           <Link
-            href="/#methodology"
-            className="text-sm font-medium text-slate-300 hover:text-cyan-400 transition"
+            href="/library"
+            className="flex items-center gap-1.5 text-xs font-mono font-medium text-slate-300 hover:text-cyan-400 transition"
           >
-            3-Desk Model
+            <BookOpen className="w-3.5 h-3.5 text-violet-400" />
+            <span>Book Corner</span>
+          </Link>
+          <Link
+            href="/quiz"
+            className="flex items-center gap-1.5 text-xs font-mono font-medium text-slate-300 hover:text-cyan-400 transition"
+          >
+            <Brain className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Quiz & Mark Scheme</span>
           </Link>
           <Link
             href="/qr"
-            className="flex items-center gap-1.5 text-sm font-medium text-amber-400 hover:text-amber-300 transition"
+            className="flex items-center gap-1 text-xs font-mono font-medium text-amber-400 hover:text-amber-300 transition"
           >
-            <QrCode className="w-4 h-4" />
+            <QrCode className="w-3.5 h-3.5" />
             <span>Fast-Track QR</span>
           </Link>
           <Link
             href="/admin"
-            className="flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-white transition"
+            className="flex items-center gap-1 text-xs font-mono font-medium text-slate-400 hover:text-white transition"
           >
-            <Shield className="w-4 h-4" />
+            <Shield className="w-3.5 h-3.5" />
             <span>Teacher Command</span>
           </Link>
         </nav>
@@ -81,21 +90,21 @@ export default function Navbar() {
           </a>
           <Link
             href="/admissions"
-            className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-300 hover:to-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)] transition"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-300 hover:to-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)] transition"
           >
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-3.5 h-3.5" />
             <span>Reserve Workstation</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
 
         {/* Mobile menu button */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex lg:hidden items-center gap-2">
           <Link
-            href="/qr"
-            className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/30"
+            href="/portal"
+            className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/30"
           >
-            <QrCode className="w-5 h-5" />
+            <UserCheck className="w-4 h-4" />
           </Link>
           <button
             type="button"
@@ -109,35 +118,52 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-800 bg-slate-950 px-4 pt-2 pb-6 space-y-3">
+        <div className="lg:hidden border-b border-slate-800 bg-slate-950 px-4 pt-2 pb-6 space-y-2 font-mono text-xs">
           <Link
-            href="/#courses"
+            href="/portal"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-900"
+            className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-cyan-300 bg-cyan-950/40 border border-cyan-800/60"
           >
-            Syllabus Tracks (0478, 9618, 4CP0, 4IT1)
+            <UserCheck className="w-4 h-4" />
+            <span>Student Portal & Mastery Tracker</span>
+          </Link>
+          <Link
+            href="/library"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-200 hover:bg-slate-900"
+          >
+            <BookOpen className="w-4 h-4 text-violet-400" />
+            <span>Digital Book Corner & Source Files</span>
+          </Link>
+          <Link
+            href="/quiz"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-200 hover:bg-slate-900"
+          >
+            <Brain className="w-4 h-4 text-emerald-400" />
+            <span>Quiz & Mark-Scheme Keyword Scanner</span>
           </Link>
           <Link
             href="/qr"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg text-base font-medium text-amber-300 bg-amber-950/30 border border-amber-900/60"
+            className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-amber-300 bg-amber-950/30 border border-amber-900/60"
           >
-            <QrCode className="w-5 h-5 text-amber-400" />
-            <span>Mobile Fast-Track (&lt; 60s)</span>
+            <QrCode className="w-4 h-4 text-amber-400" />
+            <span>Fast-Track Mobile QR (&lt; 60s)</span>
           </Link>
           <Link
             href="/admissions"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-lg text-base font-medium text-cyan-300 bg-cyan-950/30 border border-cyan-800/60"
+            className="block px-3 py-2.5 rounded-lg text-slate-200 hover:bg-slate-900"
           >
             4-Step Admission Wizard
           </Link>
           <Link
             href="/admin"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:bg-slate-900"
+            className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-900"
           >
-            <Shield className="w-5 h-5" />
+            <Shield className="w-4 h-4" />
             <span>Teacher Command Center</span>
           </Link>
           <div className="pt-2">
@@ -145,7 +171,7 @@ export default function Navbar() {
               href={`https://wa.me/${STUDIO_CONFIG.whatsappNumber.replace(/[^0-9]/g, '')}`}
               className="block text-center py-2.5 rounded-xl text-xs font-mono text-slate-300 bg-slate-900 border border-slate-800"
             >
-              Direct Studio WhatsApp: {STUDIO_CONFIG.whatsappFormatted}
+              Direct WhatsApp: {STUDIO_CONFIG.whatsappFormatted}
             </a>
           </div>
         </div>

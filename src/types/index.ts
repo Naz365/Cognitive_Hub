@@ -104,3 +104,100 @@ export interface StudioStats {
   projectedRevenueBDT: number;
   collectedRevenueBDT: number;
 }
+
+// ---------------------------------------------
+// PHASE 2 DATA MODELS
+// ---------------------------------------------
+
+export type MasteryLevel = 'needs_review' | 'practicing' | 'mastered';
+
+export interface SyllabusUnit {
+  id: string;
+  courseCode: SyllabusCode;
+  unitNumber: number;
+  title: string;
+  objectives: string[];
+  masteryLevel: MasteryLevel;
+  confidenceScore: number; // 0 to 100
+  pastPaperQuestionsLinked: number;
+}
+
+export interface LabSubmission {
+  id: string;
+  studentId: string;
+  studentName: string;
+  courseCode: SyllabusCode;
+  title: string;
+  fileName: string;
+  fileType: 'py' | 'html' | 'css' | 'xlsx' | 'accdb';
+  fileSizeKb: number;
+  submittedAt: string;
+  version: number;
+  status: 'pending_review' | 'graded';
+  score?: number; // out of 100
+  teacherAnnotation?: string;
+  rubricFeedback?: {
+    algorithmicEfficiency: number; // /10
+    syntaxAndStyle: number; // /10
+    markSchemeCompliance: number; // /10
+  };
+}
+
+export interface LibraryResource {
+  id: string;
+  courseCode: SyllabusCode;
+  title: string;
+  category: 'endorsed_ebook' | 'pseudocode_handbook' | 'formula_sheet' | 'past_paper_bundle' | 'lecture_slides';
+  fileFormat: 'pdf' | 'zip' | 'slides';
+  sizeMb: number;
+  description: string;
+  downloadUrl?: string;
+  pagesCount?: number;
+  previewSample: string;
+}
+
+export interface KeywordMarkRule {
+  requiredKeyword: string;
+  synonyms: string[];
+  markWeight: number;
+  explanation: string;
+}
+
+export interface OpenQuestion {
+  id: string;
+  courseCode: SyllabusCode;
+  paperVariant: string; // e.g. "0478/12/M/J/24 Q3"
+  questionText: string;
+  maxMarks: number;
+  rubricKeywords: KeywordMarkRule[];
+  modelAnswer: string;
+  topic: string;
+}
+
+export interface KeywordScannerResult {
+  questionId: string;
+  totalMarksAwarded: number;
+  maxMarks: number;
+  matchedKeywords: {
+    keyword: string;
+    matchedToken: string;
+    explanation: string;
+  }[];
+  missedKeywords: {
+    keyword: string;
+    explanation: string;
+  }[];
+  highlightedHtml: string;
+  feedbackAdvice: string;
+}
+
+export interface MistakeLogEntry {
+  id: string;
+  questionId: string;
+  questionText: string;
+  courseCode: SyllabusCode;
+  topic: string;
+  missedKeywords: string[];
+  correctConcept: string;
+  loggedAt: string;
+}

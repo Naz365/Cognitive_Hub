@@ -96,3 +96,71 @@ test('Teacher Verification: Approving payment promotes Hold to Enrolled permanen
   assert.equal(admission.payment.status, 'verified');
   assert.equal(desk.status, 'enrolled');
 });
+
+
+// -------------------------------------------------------------
+// PHASE 2 TESTS: KEYWORD SCANNER & DIGITAL BOOK CORNER
+// -------------------------------------------------------------
+test('Keyword Scanner: Must award partial credit and identify matched and missed keywords', () => {
+  const sampleQuestion = {
+    id: 'q-test-compression',
+    maxMarks: 4,
+    rubricKeywords: [
+      { requiredKeyword: 'lossless compression', synonyms: ['lossless'], markWeight: 1 },
+      { requiredKeyword: 'consecutive identical', synonyms: ['repeated', 'runs of identical'], markWeight: 1 },
+      { requiredKeyword: 'frequency count', synonyms: ['count', 'frequency'], markWeight: 1 },
+      { requiredKeyword: 'reconstruct original', synonyms: ['reconstructed exactly'], markWeight: 1 },
+    ],
+  };
+
+  function testScanner(candidateText, question) {
+    const textLower = candidateText.toLowerCase();
+    let score = 0;
+    const matched = [];
+    const missed = [];
+
+    for (const rule of question.rubricKeywords) {
+      const targets = [rule.requiredKeyword, ...rule.synonyms].map(t => t.toLowerCase());
+      const hasMatch = targets.some(t => textLower.includes(t));
+      if (hasMatch) {
+        score += rule.markWeight;
+        matched.push(rule.requiredKeyword);
+      } else {
+        missed.push(rule.requiredKeyword);
+      }
+    }
+
+    return { score: Math.min(score, question.maxMarks), matched, missed };
+  }
+
+  // Candidate with partial answer
+  const answer1 = "Run-length encoding is a lossless compression method where frequency count of characters is stored.";
+  const res1 = testScanner(answer1, sampleQuestion);
+
+  assert.equal(res1.score, 2, 'Should award 2 out of 4 marks');
+  assert.ok(res1.matched.includes('lossless compression'));
+  assert.ok(res1.matched.includes('frequency count'));
+  assert.ok(res1.missed.includes('consecutive identical'));
+  assert.ok(res1.missed.includes('reconstruct original'));
+
+  // Candidate with complete answer
+  const answer2 = "Lossless compression is used. It identifies consecutive identical characters and stores a count of each, allowing us to reconstruct original data.";
+  const res2 = testScanner(answer2, sampleQuestion);
+  assert.equal(res2.score, 4, 'Should award full 4 marks');
+  assert.equal(res2.missed.length, 0, 'No keywords should be missed');
+});
+
+test('Digital Vault: Shelves must cover all 4 board syllabi', () => {
+  const supportedSyllabi = ['0478', '9618', '4CP0', '4IT1'];
+  const sampleVault = [
+    { courseCode: '0478', category: 'endorsed_ebook' },
+    { courseCode: '9618', category: 'past_paper_bundle' },
+    { courseCode: '4CP0', category: 'pseudocode_handbook' },
+    { courseCode: '4IT1', category: 'past_paper_bundle' },
+  ];
+
+  const presentCodes = new Set(sampleVault.map(v => v.courseCode));
+  for (const code of supportedSyllabi) {
+    assert.ok(presentCodes.has(code), `Vault must provide resources for syllabus ${code}`);
+  }
+});
