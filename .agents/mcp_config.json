@@ -3,6 +3,31 @@
     "parallel": {
       "url": "https://mcp.parallel.ai/mcp",
       "serverUrl": "https://mcp.parallel.ai/mcp"
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "serverUrl": "https://mcp.context7.com/mcp"
+    },
+    "stitch": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "stitch-mcp"
+      ]
+    },
+    "insaits": {
+      "command": "python",
+      "args": [
+        "-m",
+        "insa_its.mcp.server"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
     }
   }
 }
