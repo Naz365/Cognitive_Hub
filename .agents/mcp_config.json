@@ -13,7 +13,10 @@
       "args": [
         "-y",
         "stitch-mcp"
-      ]
+      ],
+      "env": {
+        "GOOGLE_CLOUD_PROJECT": "cognitive-hub-bd"
+      }
     },
     "insaits": {
       "command": "python",
@@ -35,6 +38,38 @@
       "headers": {
         "Authorization": "Bearer bd_live_1QQFPGSnqFpuFIxeGin9bnADEG2G5bCE",
         "X-Better-Design-Client": "antigravity"
+      }
+    },
+    "snyk": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "snyk@latest",
+        "mcp",
+        "-t",
+        "stdio"
+      ]
+    },
+    "hexstrike-ai": {
+      "command": "python",
+      "args": [
+        "c:/Users/Nazmu/OneDrive/Desktop/Cognitive Hub/tools/hexstrike-ai/hexstrike_mcp.py",
+        "--server",
+        "http://127.0.0.1:8888"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1"
+      }
+    },
+    "claudit-security": {
+      "command": "python",
+      "args": [
+        "c:/Users/Nazmu/OneDrive/Desktop/Cognitive Hub/tools/claudit-sec/claudit_mcp.py"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1"
       }
     }
   }

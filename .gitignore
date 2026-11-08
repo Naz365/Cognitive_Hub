@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Security tools and logs
+hexstrike.log
+*.log
+/tools/
